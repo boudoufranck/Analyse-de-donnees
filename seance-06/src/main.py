@@ -63,7 +63,7 @@ iles = pd.DataFrame(ouvrirUnFichier("./data/island-index.csv"))
 monde = pd.DataFrame(ouvrirUnFichier("./data/Le-Monde-HS-Etats-du-monde-2007-2025.csv"))
 
 
-# Debut des manipulations et des questions de cours. 
+#Debut des manipulations et des questions de cours. 
 print("\n" + "="*80)
 print("ANALYSE LOI RANG–TAILLE (ISLAND INDEX)")
 print("="*80 + "\n")
@@ -122,11 +122,11 @@ plt.tight_layout()
 plt.savefig("rang_taille_classique.png", dpi=200)
 plt.close()
 
-print("Image générée : rang_taille_classique.png")
+print("Image générée : rang_taille_classique_pas_encore_lisible.png")
 
 #Conversion logarithmique données
 print("\n" + "-"*60)
-print("Étape 1.4 — Conversion logarithmique des axes")
+print("Conversion logarithmique des axes")
 print("-"*60)
 
 log_rangs = conversionLog(rangs)
@@ -141,16 +141,13 @@ plt.tight_layout()
 plt.savefig("rang_taille_log.png", dpi=200)
 plt.close()
 
-print("Image générée : rang_taille_log.png")
+print("Image lisible : rang_taille_log.png")
 
-#Test statistique possible ? 
-# Non. Les rangs ne sont pas des variables aléatoires : ce sont des valeurs
-# déterministes obtenues après un tri. Ils ne suivent donc pas une distribution
-# probabiliste permettant d’appliquer un test statistique (normalité, KS, etc.)
-# On ne peut tester que les valeurs (surfaces), jamais les rangs eux-mêmes.
+#Question 7 : possibilité de faire un test statistique sur les rangs ? 
+#Il semble que les rangs ne soient pas des variables aléatoires donc un test n'est pas possible. Les valeurs semblent déterministes, elles ne suivent pas une distribution probabiliste favorable à un test statistique. 
 
 print("\n" + "-"*60)
-print("Fin de la partie 1 — Les images ont été générées et la conclusion est en commentaire.")
+print("Les images ont été générées et la conclusion est en commentaire.")
 print("-"*60 + "\n")
 
 
@@ -229,14 +226,9 @@ from scipy.stats import spearmanr, kendalltau
 spearman_coef, spearman_p = spearmanr(rangs_pop, rangs_dens)
 kendall_coef, kendall_p = kendalltau(rangs_pop, rangs_dens)
 
-print(f"Coefficient de corrélation de rang Spearman : {spearman_coef:.4f} (p-value = {spearman_p:.4f})")
-print(f"Coefficient de concordance de rang Kendall : {kendall_coef:.4f} (p-value = {kendall_p:.4f})")
-
-print("\n# Commentaire :")
-print("# Ces coefficients indiquent le degré de similarité entre le classement par population et le classement par densité.")
-print("# Valeurs proches de 1 => forte concordance ; proches de 0 => classement indépendant ; valeurs négatives => classement inverse.")
+print(f"Coefficient de corrélation des rangs Spearman : {spearman_coef:.4f} (p-value = {spearman_p:.4f})")
+print(f"Coefficient de concordance de rangs Kendall : {kendall_coef:.4f} (p-value = {kendall_p:.4f})")
 
 # Bonus
 print("\n" + "="*80)
 print("="*80 + "\n")
-

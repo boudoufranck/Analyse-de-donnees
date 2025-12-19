@@ -144,7 +144,7 @@ for nom in colonnes:
     print(f"{nom} : réelle={fr_real} → {conclusion_ic} ; {conclusion_fluct}")
 
 #Test sur plusieurs lignes pour valider le jugement 
-print("\nAnalyse rapide sur les 5 premiers échantillons (IC 95 %) :")
+print("\nAnalyse sur les 5 premiers échantillons (IC 95 %) :")
 
 for i in range(min(5, len(donnees))):
     ligne_i = list(donnees.iloc[i].astype(int))
@@ -193,7 +193,5 @@ for nom_fichier, valeurs in donnees_tests.items():
 
 #Interprétation 
 print("\nInterprétation :")
-print("Le test de Shapiro-Wilk vérifie si l'échantillon suit une loi normale.")
 print("- Si p-value > 0.05 : la distribution peut être considérée comme normale.")
 print("- Si p-value ≤ 0.05 : la distribution ne suit pas la loi normale.")
-print("Ces résultats permettront de décider quel test statistique utiliser pour l’analyse ultérieure.\n")
